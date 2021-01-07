@@ -1,0 +1,32 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: spice-mall
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spice_mall
+    username: root
+    password: 123456
+
+mybatis-plus:
+  #信息输出设置
+  # xml地址
+#  mapper-locations: classpath:mapper/*
+  # 实体扫描，多个package用逗号或者分号分隔
+  # type-aliases-package: ***   #自己的实体类地址
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 逻辑删除
+#  global-config:
+#    db-config:
+#      logic-delete-field: delete_time
+#      logic-delete-value: now()
+#      logic-not-delete-value: null
+jwt:
+  header: Authorization
+  expires_in: 3600
+  issuer: ${spring.application.name}
+  secret: 123456
+  audience: web
