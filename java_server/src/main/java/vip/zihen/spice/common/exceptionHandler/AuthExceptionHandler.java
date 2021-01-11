@@ -17,13 +17,13 @@ public class AuthExceptionHandler {
     @ResponseBody
     public ApiResult authExceptionHandler(AuthException e){
         System.out.println("未知异常！原因是:"+e);
-        return ApiResult.fail(ApiCode.UNAUTHORIZED);
+        return ApiResult.fail(ApiCode.NOT_PERMISSION);
     }
 
     @ExceptionHandler(value = AuthenticationException.class)
     @ResponseBody
     public ApiResult authenticationException(AuthenticationException e){
         System.out.println("未知异常！原因是:"+e);
-        return ApiResult.fail(ApiCode.NOT_PERMISSION);
+        return ApiResult.fail(ApiCode.UNAUTHORIZED);
     }
 }

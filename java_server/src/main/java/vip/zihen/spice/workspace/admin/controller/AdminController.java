@@ -1,5 +1,7 @@
 package vip.zihen.spice.workspace.admin.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import vip.zihen.spice.config.auth.LoginRequired;
 import vip.zihen.spice.workspace.admin.entity.Admin;
 import vip.zihen.spice.workspace.admin.service.AdminService;
@@ -19,6 +21,7 @@ import java.util.Objects;
  * @author wangjie
  * @since 2021-01-05 18:10:21
  */
+@Api(tags = "管理员相关接口")
 @RestController
 @RequestMapping("admin")
 public class AdminController {
@@ -34,6 +37,7 @@ public class AdminController {
      * @return
      */
     @PostMapping("login")
+    @ApiOperation("管理员登录后台")
     public ApiResult selectOne(@RequestBody LoginParamVo loginParamVo) {
 
         Admin query = new Admin();
@@ -56,6 +60,7 @@ public class AdminController {
 
     @LoginRequired(roles = {UserRole.ADMIN})
     @DeleteMapping("/{id}")
+    @ApiOperation("删除管理员")
     public ApiResult<Boolean> delete(@PathVariable int id) {
         return ApiResult.ok(adminService.deleteById(id));
     }

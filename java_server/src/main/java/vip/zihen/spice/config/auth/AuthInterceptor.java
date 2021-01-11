@@ -1,11 +1,10 @@
 package vip.zihen.spice.config.auth;
 
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import vip.zihen.spice.common.Utils.RequestUtils;
+import vip.zihen.spice.common.utils.RequestUtils;
 import vip.zihen.spice.config.auth.exception.UnauthorizedException;
 import vip.zihen.spice.config.auth.jwt.JwtUtils;
 import vip.zihen.spice.config.auth.jwt.LoginUser;
@@ -15,7 +14,6 @@ import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
 
 
 @Configurable
@@ -42,9 +40,11 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         // 未登录
-        if (token == null) {
+        if (!JwtUtils.verifyToken(token)) {
             throw new AuthenticationException();
         }
+
+        // todo：登陆过时 暂时未处理
 
         LoginUser loginUser = JwtUtils.getLoginUser(token);
         UserRole[] userRoles = loginRequired.roles();

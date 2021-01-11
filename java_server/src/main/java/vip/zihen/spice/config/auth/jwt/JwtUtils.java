@@ -1,15 +1,18 @@
 package vip.zihen.spice.config.auth.jwt;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Component;
-import vip.zihen.spice.common.Utils.UUIDUtil;
+import vip.zihen.spice.common.utils.UUIDUtil;
 import vip.zihen.spice.common.constants.JwtConstants;
 
 import java.util.Date;
 
+@Slf4j
 @Component
 public class JwtUtils {
 
@@ -17,6 +20,42 @@ public class JwtUtils {
 
     public JwtUtils(JwtProperties jwtProperties) {
         JwtUtils.jwtProperties = jwtProperties;
+    }
+
+    private static String clearToken(String token) {
+        if (token.startsWith("Bearer")) {
+            token = token.replace("Bearer", "").trim();
+        }
+        return token;
+    }
+
+    /**
+     * @desc   验证token，通过返回true
+     * @create 2021-01-08
+     * @params [token]需要校验的串
+     **/
+    public static boolean verifyToken(String token) {
+        String salt = JwtConstants.SALT;
+        return verifyToken(token, salt);
+    }
+
+    /**
+     * @desc   验证token，通过返回true
+     * @create 2021-01-08
+     * @params [token]需要校验的串
+     **/
+    public static boolean verifyToken(String token, String salt) {
+        token = clearToken(token);
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(salt);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT jwt = verifier.verify(token);
+            return true;
+        } catch (Exception e) {
+            log.error("token验证失败");
+            e.printStackTrace();
+            return  false;
+        }
     }
 
     public static String createToken(Integer userId, int role) {
@@ -74,9 +113,7 @@ public class JwtUtils {
     }
 
     public static DecodedJWT getJwt(String token) {
-        if (token.startsWith("Bearer")) {
-            token = token.replace("Bearer", "").trim();
-        }
+        token = clearToken(token);
         return JWT.decode(token);
     }
 

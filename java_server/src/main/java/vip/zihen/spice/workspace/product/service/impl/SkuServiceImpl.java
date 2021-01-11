@@ -1,5 +1,6 @@
 package vip.zihen.spice.workspace.product.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.stereotype.Service;
 import vip.zihen.spice.workspace.product.entity.Sku;
@@ -31,17 +32,15 @@ public class SkuServiceImpl implements SkuService {
         return skuMapper.selectById(id);
     }
 
-//    /**
-//     * 查询多条数据
-//     *
-//     * @param offset 查询起始位置
-//     * @param limit 查询条数
-//     * @return 对象列表
-//     */
-//    @Override
-//    public List<Sku> queryAllByLimit(int offset, int limit) {
-//        return skuMapper.selectPage(offset, limit);
-//    }
+    /**
+     * 查询列表
+     * @param query 查询条件
+     * @return
+     */
+    @Override
+    public List<Sku> queryList(Sku query) {
+        return skuMapper.selectList(new QueryWrapper<>(query));
+    }
 
     /**
      * 新增数据
@@ -51,13 +50,18 @@ public class SkuServiceImpl implements SkuService {
      */
     @Override
     public Sku insert(Sku sku) {
-        int id = skuMapper.insert(sku);
-        sku.setId(id);
+        skuMapper.insert(sku);
         return sku;
     }
 
+    /**
+     * 批量插入
+     * @param skus
+     * @return
+     */
+    @Override
     public boolean insertBatch(List<Sku> skus) {
-        skus.forEach(this::insert);
+        skus.forEach(sku -> insert(sku));
         return true;
     }
 

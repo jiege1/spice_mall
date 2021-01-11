@@ -1,6 +1,8 @@
 package vip.zihen.spice.workspace.product.service;
 
 import vip.zihen.spice.workspace.product.entity.Sku;
+import vip.zihen.spice.workspace.product.entity.SkuProp;
+
 import java.util.List;
 
 /**
@@ -22,11 +24,10 @@ public interface SkuService {
     /**
      * 查询多条数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param query 查询条件
      * @return 对象列表
      */
-//    List<Sku> queryAllByLimit(int offset, int limit);
+    List<Sku> queryList(Sku query);
 
     /**
      * 新增数据
@@ -52,6 +53,11 @@ public interface SkuService {
      */
     boolean deleteById(Integer id);
 
-    public boolean insertBatch(List<Sku> skus);
+    /**
+     * 批量插入
+     * @param skus
+     * @return
+     */
+    boolean insertBatch(List<Sku> skus);
 
 }

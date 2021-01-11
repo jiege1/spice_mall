@@ -1,4 +1,4 @@
-package vip.zihen.spice.common.Utils;
+package vip.zihen.spice.common.utils;
 
 import javax.servlet.http.HttpServletRequest;
 

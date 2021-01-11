@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package vip.zihen.spice.common.Utils;
+package vip.zihen.spice.common.utils;
 
 import java.util.UUID;
 

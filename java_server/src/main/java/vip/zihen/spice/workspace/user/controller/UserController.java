@@ -1,5 +1,7 @@
 package vip.zihen.spice.workspace.user.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import java.util.Objects;
  * @author wangjie
  * @since 2021-01-04 19:21:01
  */
+@Api(tags = "C端用户模块")
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -34,6 +37,7 @@ public class UserController {
      * @param id 主键
      * @return 单条数据
      */
+    @ApiOperation("查询单个用户")
     @LoginRequired
     @GetMapping("/{id}")
     public ApiResult selectOne(@PathVariable Integer id) {

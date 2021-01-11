@@ -52,8 +52,9 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public Product insert(Product product) {
-        int id = productMapper.insert(product);
-        product.setId(id);
+        product.setSales(0);
+        productMapper.insert(product);
+//        product.setId(id);
         return product;
     }
 

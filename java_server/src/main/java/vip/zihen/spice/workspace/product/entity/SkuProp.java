@@ -1,10 +1,10 @@
 package vip.zihen.spice.workspace.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import vip.zihen.spice.common.entity.BaseEntity;
 
-import java.util.Date;
-import java.io.Serializable;
+import java.util.List;
 
 /**
  * (SkuProp)实体类
@@ -16,12 +16,8 @@ import java.io.Serializable;
 public class SkuProp extends BaseEntity {
     private static final long serialVersionUID = 834686529278177758L;
     
-    private Integer id;
-    
     private String title;
     
     private Integer parentId;
-
-    private SkuProp[] children;
 
 }

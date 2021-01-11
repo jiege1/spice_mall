@@ -14,8 +14,7 @@ import java.io.Serializable;
 @Data
 public class Sku extends BaseEntity {
     private static final long serialVersionUID = 878210278010731449L;
-    
-    private Integer id;
+
     /**
     * skuProp集合
     */
