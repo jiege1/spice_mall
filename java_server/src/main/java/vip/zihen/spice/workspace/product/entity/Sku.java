@@ -31,5 +31,9 @@ public class Sku extends BaseEntity {
      * 商品ID
      */
     private Integer productId;
+    /**
+     * 标题
+     */
+    private String title;
 
 }

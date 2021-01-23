@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 import java.util.TimeZone;
 
-@MapperScan({"vip.zihen.spice.**.mapper"})
+@MapperScan({"vip.zihen.spice.workspace.**.mapper"})
 @SpringBootApplication
 @EnableConfigurationProperties
 public class SpiceApplication {

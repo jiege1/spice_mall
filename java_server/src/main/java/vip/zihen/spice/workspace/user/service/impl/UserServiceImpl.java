@@ -1,6 +1,8 @@
 package vip.zihen.spice.workspace.user.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
 import vip.zihen.spice.workspace.user.entity.UserEntity;
 import vip.zihen.spice.workspace.user.mapper.UserMapper;
@@ -30,17 +32,10 @@ public class UserServiceImpl implements UserService {
         return mapper.selectById(id);
     }
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-//    @Override
-//    public List<UserEntity> queryAllByLimit(int offset, int limit) {
-//        return mapper.selectPage();
-//    }
+    @Override
+    public Page<UserEntity> queryPageList(int page, int size, String keywords) {
+        return null;
+    }
 
     /**
      * 新增数据
@@ -76,5 +71,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteById(Integer id) {
         return mapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public UserEntity queryByOpenId(String openId) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setOpenId(openId);
+        return mapper.selectOne(new QueryWrapper<>(userEntity));
     }
 }

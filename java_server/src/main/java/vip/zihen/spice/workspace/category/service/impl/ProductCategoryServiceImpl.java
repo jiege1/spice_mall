@@ -25,13 +25,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public List<Product> getCategoryProducts(Integer categoryId) {
-        return mapper.selectProductFromCategory(categoryId);
+        return mapper.selectProductsFromCategory(categoryId);
     }
 
     // todo
     @Override
     public Page<Product> getCategoryProductPage(Page page, Integer categoryId) {
-        return mapper.selectPageProductFromCategory(page, categoryId);
+        return mapper.selectProductsFromCategory(page, categoryId);
     }
 
     @Override

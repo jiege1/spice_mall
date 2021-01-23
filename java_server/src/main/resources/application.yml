@@ -30,3 +30,13 @@ mybatis-plus:
 #  issuer: ${spring.application.name}
 #  secret: 123456
 #  audience: web
+
+# wx
+wx:
+  miniapp:
+    config:
+      appid: appid #微信小程序的appid
+      secret: Secret #微信小程序的Secret
+      token: token #微信小程序消息服务器配置的token
+      aesKey: EncodingAESKey #微信小程序消息服务器配置的EncodingAESKey
+      msgDataFormat: JSON

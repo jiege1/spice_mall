@@ -68,6 +68,10 @@ public class ApiResult<T> implements Serializable {
         return result(ApiCode.SUCCESS, message, data);
     }
 
+    public static ApiResult fail(ApiCode code, String message) {
+        return result(code, message, null);
+    }
+
     public static ApiResult fail(ApiCode code) {
         return result(code, null, null);
     }

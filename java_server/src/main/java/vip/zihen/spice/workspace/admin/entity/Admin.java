@@ -19,5 +19,4 @@ public class Admin extends BaseEntity {
     
     private String name;
 
-
 }

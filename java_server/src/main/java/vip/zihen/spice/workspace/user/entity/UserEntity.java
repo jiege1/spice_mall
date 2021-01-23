@@ -53,11 +53,11 @@ public class UserEntity extends BaseEntity {
     */
     private String openId;
     /**
-    * 用户名
+    * 管理员ID
     */
-    private String username;
+    private Integer adminId;
     /**
-    * 登陆密码
+    * 微信头像
     */
-    private String password;
+    private String avatar;
 }

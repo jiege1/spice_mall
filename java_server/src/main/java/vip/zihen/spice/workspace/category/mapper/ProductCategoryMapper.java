@@ -20,15 +20,15 @@ import java.util.List;
 public interface ProductCategoryMapper extends BaseMapper<ProductCategory> {
 
     @Select("SELECT p.id, p.title, price, p.image, p.status, p.virtual_sales, p.stock " +
-            "FROM product p, product_category c " +
-            "WHERE c.product_id = p.id " +
-            "AND c.category_id = #{categoryId}")
-    List<Product> selectProductFromCategory(@Param(value = "categoryId") Integer categoryId);
+            "FROM product p, product_category mall " +
+            "WHERE mall.product_id = p.id " +
+            "AND mall.category_id = #{categoryId}")
+    List<Product> selectProductsFromCategory(Integer categoryId);
 
     @Select("SELECT p.id, p.title, p.price, p.image, p.status, p.virtual_sales, p.stock " +
-            "FROM product p, product_category c " +
-            "WHERE c.product_id = p.id " +
-            "AND c.category_id = #{categoryId}")
-    Page<Product> selectPageProductFromCategory(Page page, Integer categoryId);
+            "FROM product p, product_category mall " +
+            "WHERE mall.product_id = p.id " +
+            "AND mall.category_id = #{categoryId}")
+    Page<Product> selectProductsFromCategory(Page page, Integer categoryId);
 
 }

@@ -1,4 +1,4 @@
-package vip.zihen.spice.workspace.user.controller;
+package vip.zihen.spice.workspace.user.controller.admin;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,9 +21,9 @@ import java.util.Objects;
  * @author wangjie
  * @since 2021-01-04 19:21:01
  */
-@Api(tags = "C端用户模块")
-@RestController
-@RequestMapping("user")
+@Api(tags = "B端用户模块")
+@RestController("adminUserController")
+@RequestMapping("b/user")
 public class UserController {
     /**
      * 服务对象

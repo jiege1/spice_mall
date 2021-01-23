@@ -38,20 +38,9 @@ public class AdminController {
      */
     @PostMapping("login")
     @ApiOperation("管理员登录后台")
-    public ApiResult selectOne(@RequestBody LoginParamVo loginParamVo) {
+    public ApiResult selectOne(@RequestBody LoginParamVo loginParamVo) throws Exception {
 
-        Admin query = new Admin();
-        query.setUsername(loginParamVo.getUsername());
-
-        Admin admin = adminService.selectOne(query);
-
-        if (Objects.isNull(admin)) {
-            return ApiResult.fail(ApiCode.LOGIN_USER_NOT_EXIST);
-        }
-
-        if (!admin.getPassword().equals(loginParamVo.getPassword()) ) {
-            return ApiResult.fail(ApiCode.LOGIN_PASSWORD_EXCEPTION);
-        }
+        Admin admin = adminService.adminLogin(loginParamVo.getUsername(), loginParamVo.getPassword());
 
         // 管理员权限
         String token = JwtUtils.createToken(admin.getId(), UserRole.ADMIN.getRole());

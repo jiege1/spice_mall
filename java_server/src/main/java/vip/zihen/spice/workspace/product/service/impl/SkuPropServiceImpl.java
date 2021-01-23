@@ -61,7 +61,7 @@ public class SkuPropServiceImpl implements SkuPropService {
      */
     @Override
     public SkuProp update(SkuProp skuProp) {
-        skuPropMapper.update(skuProp, new UpdateWrapper<SkuProp>(skuProp));
+        skuPropMapper.update(skuProp, new UpdateWrapper<>(skuProp));
         return queryById(skuProp.getId());
     }
 

@@ -16,4 +16,6 @@ public interface AdminService {
 
     boolean deleteById(int id);
 
+    Admin adminLogin(String username, String password) throws Exception;
+
 }

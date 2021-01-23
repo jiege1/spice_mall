@@ -1,6 +1,9 @@
 package vip.zihen.spice.workspace.user.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import vip.zihen.spice.workspace.user.entity.UserEntity;
+
+import java.util.List;
 
 /**
  * (UserEntity)表服务接口
@@ -18,14 +21,14 @@ public interface UserService {
      */
     UserEntity queryById(Integer id);
 
-//    /**
-//     * 查询多条数据
-//     *
-//     * @param offset 查询起始位置
-//     * @param limit 查询条数
-//     * @return 对象列表
-//     */
-//    List<UserEntity> queryAllByLimit(int offset, int limit);
+    /**
+     * 查询列表
+     * @param page
+     * @param size
+     * @param keywords
+     * @return
+     */
+    Page<UserEntity> queryPageList(int page, int size, String keywords);
 
     /**
      * 新增数据
@@ -50,5 +53,12 @@ public interface UserService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+    /**
+     * 通过小程序openId获取用户信息
+     * @param openId
+     * @return
+     */
+    UserEntity queryByOpenId(String openId);
 
 }
